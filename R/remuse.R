@@ -1,4 +1,4 @@
-#' Package pour la formation "Débuter en R"
-#' Contient les vignettes (les slides de cours), le jeu de données "fruits", le jeu de données "nutrimenu"  et les tutoriels. https://vguillemot.github.io/debuter/
+#' Package for the classe "R e-MUSE"
+#' Contains the slides as vignettes, the "fruits" dataset, the "nutrimenu" dataset,  and the tutorials. https://vguillemot.github.io/remuse/
 #' @keywords internal
 "_PACKAGE"

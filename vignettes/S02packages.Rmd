@@ -22,43 +22,43 @@ knitr::opts_chunk$set(
 
 ## 
 
-![](img/S02packages/fripouille.001.jpeg){width=100%}
+![](img/S02packages/fripouille.001.png){width=100%}
 
 ## 
 
-![](img/S02packages/fripouille.002.jpeg){width=100%}
+![](img/S02packages/fripouille.002.png){width=100%}
 
 ## 
 
-![](img/S02packages/fripouille.003.jpeg){width=100%}
+![](img/S02packages/fripouille.003.png){width=100%}
 
 ## 
 
-![](img/S02packages/fripouille.004.jpeg){width=100%}
+![](img/S02packages/fripouille.004.png){width=100%}
 
 ## 
 
-![](img/S02packages/fripouille.005.jpeg){width=100%}
+![](img/S02packages/fripouille.005.png){width=100%}
 
 ## 
 
-![](img/S02packages/fripouille.006.jpeg){width=100%}
+![](img/S02packages/fripouille.006.png){width=100%}
 
 ## 
 
-![](img/S02packages/fripouille.007.jpeg){width=100%}
+![](img/S02packages/fripouille.007.png){width=100%}
 
 ## 
 
-![](img/S02packages/fripouille.008.jpeg){width=100%}
+![](img/S02packages/fripouille.008.png){width=100%}
 
 ## 
 
-![](img/S02packages/fripouille.009.jpeg){width=100%}
+![](img/S02packages/fripouille.009.png){width=100%}
 
 ## 
 
-![](img/S02packages/fripouille.010.jpeg){width=100%}
+![](img/S02packages/fripouille.010.png){width=100%}
 
 ## Install packages from {.smaller}
 
@@ -77,13 +77,15 @@ knitr::opts_chunk$set(
 
 ## Install limma
 
-limma is the favorite package of anyone that wants to analyze gene expression data (microarray, RNA-seq, NanoString etc.)
+`limma` is the favorite package of anyone that wants to analyze gene expression data (microarray, RNA-seq, NanoString etc.)
 
-Install it with the command 
+Install it with the command:
 
 ```{r install, eval = FALSE}
 BiocManager::install("limma")
 ```
+
+
 
 ## Explore the package
 
@@ -96,5 +98,12 @@ BiocManager::install("limma")
 
   3. Look at the first vignette : `vignette("intro", package = "limma")`
 
+## Install the "ReMUSE" course's package
+
+The course's material is in fact an R package. Install it from GitHub with the command:
+
+```{r installReMuse, eval = FALSE}
+devtools::install_github("vguillemot/ReMUSE")
+```
 
 

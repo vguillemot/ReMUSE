@@ -5,3 +5,8 @@ tidyr
 factoextra
 FactoMineR
 rmarkdown
+dplyr
+magrittr
+RColorBrewer
+pheatmap
+kableExtra

@@ -40,7 +40,7 @@ library(pheatmap)
 We also need the "fruits" data: 
 
 ```{r data}
-data("fruits", package = "debuter")
+data("fruits", package = "ReMUSE")
 ```
 
 ## Program
@@ -144,7 +144,7 @@ Reproduce the graph below:
 
 ![](img/S04pheatmap/barplot.png){width=80%}
 
-# ATTENTION !
+# CAUTION!
 
 ## Recycling is dangerous!
 
@@ -179,7 +179,7 @@ brewer.pal(n = 3, name = "Set3")
 
 ## In a few words
 
-Theer are three types of palette : sequential, diverging and qualitatives.
+There are three types of palettes: sequential, diverging and qualitative.
 
  1. **sequential** : to distinguish low values (light colors) to high values (dark colors)
  2. **diverging** : low and high values are both dark colors, middle values are light colors
@@ -240,7 +240,7 @@ pheatmap(fruits[, -(1:2)])
 ## The arguments
 
  * `cluster_rows = FALSE` : remove row dendrogram
- * `scale = "column"`  : standardise variables
+ * `scale = "column"`  : standardize variables
  * `show_rownames = FALSE` : hide row names
  * `cellwidth = 10` : smaller cells
 

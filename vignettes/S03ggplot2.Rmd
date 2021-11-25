@@ -30,7 +30,7 @@ library(magrittr)
 
 We will need the package `ggplot2` :
 
- * Check that  `ggplot2` is installed
+ * Check that `ggplot2` is installed
  * If not, install it, then load it
 
 ```{r ggplot2}
@@ -55,7 +55,7 @@ data("fruits", package = "ReMUSE")
 
 ## Reminder : the barplot function
 
-LThe base function for bar plots is `barplot` : 
+The base function for bar plots is `barplot` : 
 
 ```{r barplot}
 barplot(table(fruits$groupe))
@@ -76,11 +76,11 @@ ggplot(data = fruits, aes(x = groupe, fill = groupe)) +
 
 <span style="color:red">STOP !</span>
 
-## Décomposition de la commande
+## Break down the command
 
- * `ggplot` : create an exmpry canvas
- * `aes` : declare aesthetic parameter (position, color, width, shape, opacity, etc...)
- * `geom_bar` : use a *geometry*
+ * `ggplot` : create an empty canvas
+ * `aes`: declare aesthetic parameters (position, color, width, shape, opacity, etc...)
+ * `geom_bar`: use a *geometry*
 
 
 ## Data {.center}
@@ -105,12 +105,12 @@ ggplot(data = fruits, aes(x = groupe, fill = groupe)) +
 
 ## Implementation in ggplot2
 
------------  -------- -------------------
- Data     `data`    The data used to create the graph. Each line represents an object to add to the graph.
- Geometry   `geom_`   How to represent the objects: point, lines, surfaces etc.
- Aesthetics  `aes()`   Aesthetic parameters of the shapes: position, color, shape, size etc.
- Scale    `scale_`  Functions used to parameter how the shapes are created from the objects and the aesthetic parameters. For example the function `scale_color_manual` allows the users to pick their own colors. 
------------  -------- --------------------
+-----------  -------- --------------------------
+Data         `data`   The data used to create the graph. Each line represents an object to add to the graph.
+Geometry     `geom_`  How to represent the objects: point, lines, surfaces etc.
+Aesthetics   `aes()`  Aesthetic parameters of the shapes: position, color, shape, size etc.
+Scale        `scale_` Functions used to parameter how the shapes are created from the objects and the aesthetic parameters. For example the function `scale_color_manual` allows the users to pick their own colors. 
+-----------  -------- --------------------------
 
 ## Your turn! {.columns-2}
 
@@ -140,7 +140,7 @@ Reproduce the graph on the right:
  
 ## Some geometries
 
-Nous allons voir ensemble quelques géométries particulières qui permettent de créer des graphes classiques.
+We are going to see together some particular geometries used to create "classic" graphs.
 
 ---------------- --------------------------------
 `geom_bar`       Bar plot on non-aggregated data
@@ -218,7 +218,7 @@ In this case, it is very important to choose the intervals!
 
 ## Default histogram {.columns-2 .smaller}
 
- * $y$-axis: counts for the given interval (also called "class")
+ * $y$-axis: counts for the given interval (intervals are also called "classes")
  * $x$-axis: 
    - same width intervals,
    - 30 intervals,
@@ -238,10 +238,10 @@ ggplot(fruits, aes(Sucres)) +
    
 ## What does the message mean?
 
-To create a histogram, one needs to distributes values into classes.
+To create a histogram, one needs to distribute values into classes.
 
  * `hist` does it automatically with an algorithm  (Sturges by default, but the user can use Scott, or Friedman-Diaconis algorithms). If `n` is specified, the function will choose a close value for `n` that gives pretty intervals. To force the classes, use `breaks`.
- *`geom_histogram` create 30 classes by default, it is the user's job to specify their classes or the number of classes they want.
+ * `geom_histogram` creates 30 classes by default, it is the user's job to specify their classes or the number of classes they want.
 
 ## Modify the intervals
 
@@ -398,7 +398,7 @@ ggplot(fruits, aes(y = Fibres)) +
  * __Title for the $x$ axis__ : with `xlab`
  * __Title for the $y$ axis__ : with `ylab`
 
-Use the wrapper function `labs` to go even faster:
+... or use the wrapper function `labs` to go even faster:
 
 ```{r labs, eval = FALSE}
 labs(
@@ -417,7 +417,7 @@ With the function `theme()`: each element has to be defined according to its nat
 
  * To change text, use `element_text(size=, colour = "", family = "")` (e.g. titles)
  * To change lines, use `element_line(colour=“”, size=)` (e.g. major and minor grids)
- * To change someting shaped like a rectangle, use `element_rect(fill = "")` (e.g.: background)
+ * To change something shaped like a rectangle, use `element_rect(fill = "")` (e.g.: background)
 
 ## Some of the things one can change with `theme()`
 
@@ -436,14 +436,14 @@ With the function `theme()`: each element has to be defined according to its nat
 
 ## With `geom_point`
 
-This geometry **needs** $x$ et $y$ aesthetic parameters, and will accept optionnally size, color and shape.
+This geometry **needs** $x$ et $y$ aesthetic parameters, and will accept optionally size, color and shape.
 
 ```{r geompoint, fig.height = 3}
 ggplot(fruits, aes(x = Phosphore, y = Calcium, size = Magnesium)) + 
   geom_point()
 ```
 
-## Aesthetic parmaeters
+## Aesthetic parameters
 
 When they are specified in `aes`, they apply values (from the dataset) to a characteristic of the objects that are drawn on the graph.
 
@@ -538,7 +538,7 @@ They allow the use to customize a scale (in $x$ or $y$ but not only)!
   * `scale_x_log10()` changes the $x$ scale to a logarithmic scale,
   * `scale_y_log10()` changes the $y$ scale to a logarithmic scale,
   * `scale_color_manual()` customizes the colors,
-  * `scale_fill_manual()` cutomizes the colors inside shapes,
+  * `scale_fill_manual()` customizes the colors inside shapes,
   * `scale_x_continuous()` customizes the $x$ scale for a continuous variable,
   * `scale_y_continuous()` customizes the $y$ scale for a continuous variable,
   * `scale_x_discrete()` customizes the $x$ scale for a discrete variable,,
@@ -639,19 +639,19 @@ ggplot(fruits,
 
 That is used the same way as `facet_wrap`.
 
-To divide a graphe `g` into several panels according to the value of a factor `factorow` for the lines and `factocol` for the columns:
+To divide a graph `g` into several panels according to the value of a factor `factorow` for the lines and `factocol` for the columns:
 
 ```
 g + facet_grid(rows = vars(factorow), cols = vars(factocol))
 ```
 
-One can also use a "formula" : 
+One can also use a "formula": 
 
 ```
 g + facet_grid(factorow ~ factocol)
 ```
 
-A PIECE OF ADVICE: when using facetting, be careful about the levels of the categorical variables that your are going to use.
+A PIECE OF ADVICE: when using faceting, be careful about the levels of the categorical variables that your are going to use.
 
 # Save a graph
 

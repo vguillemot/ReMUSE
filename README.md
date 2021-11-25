@@ -1,9 +1,3 @@
-## Course's website
-
-- The website: <https://vguillemot.github.io/ReMUSE/>
-
-****
-
 ## Course's material
 
 |  Date  | Theme |  Link to slides | Tutorial |
@@ -19,8 +13,8 @@
 Essential links : 
 
   * [Shared programming document](https://docs.google.com/document/d/1JewxWaldy_9E8ny6k2HNCKafqvOsjDUR4Kz4g-PQFxk/edit?usp=sharing)
-  * Kahoot : [www.kahoot.it](www.kahoot.it)
-  * Rstudio : [www.rstudio.com](www.rstudio.com)
+  * Kahoot : [www.kahoot.it](https://kahoot.it/)
+  * Rstudio : [www.rstudio.com](https://www.rstudio.com/)
   * Comprehensive R Archive Network : [https://cran.r-project.org/](https://cran.r-project.org/)
   * Bioconductor : [https://www.bioconductor.org/](https://www.bioconductor.org/)
   * The [fruits](inst/extdata/fruits.xlsx) dataset in `xlsx` format 

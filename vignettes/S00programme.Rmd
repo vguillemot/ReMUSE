@@ -29,8 +29,8 @@ knitr::opts_chunk$set(
 
 <p class="forceBreak"></p>
 
- * Biostatisticien
- * Intégration de données
+ * Biostatistician
+ * Data integration
 
 
 ## Welcome Quiz
@@ -40,7 +40,7 @@ knitr::opts_chunk$set(
 
 ## Program {.bigger}
 
- * Nov. 25: ggplot2 and pheatmap
+ * Nov. 25: `ggplot2` and `pheatmap`
  * Dec. 2: PCA, clustering and maybe more
 
 
@@ -55,12 +55,12 @@ To make it more interactive:
 
 ## Simple data... for me
 
-![Composition de produits alimentaires (https://ciqual.anses.fr/)](img/S00programme/ciqual.jpg){width=100%}
+![Composition of a selection of fruits (https://ciqual.anses.fr/)](img/S00programme/ciqual.jpg){width=100%}
 
 
 ## But also...
 
- * Courses web-page: https://vguillemot.github.io/remuse/
+ * Course's web-page: https://vguillemot.github.io/ReMUSE/
  * Slides in PDF (and HTML) format
  * Exercises and solutions
  * Tutorials

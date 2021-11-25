@@ -25,46 +25,46 @@ library(ggplot2)
 ```
 
 
-## La différence entre R et Rstudio {.columns-2}
+## The difference between R and Rstudio {.columns-2 .smaller}
 
 
-R est d'abord un **langage de programmation** qui a pour but principal de permettre d'analyser des données et de produire des représentations graphiques.
+R is first of all a **programming language** whose main goal is to analyze data and produce graphic representations.
 
-Mais c'est également un logiciel Open Source, libre et gratuit qui peut s'installer sur tous les systèmes d'exploitation classiques (Mac, Windows et Linux).
+But it is also open source, free and open source software that can be installed on all standard operating systems (Mac, Windows and Linux).
 
-De plus la communauté des utilisateurs de R met à disposition 18261 (le 24/09/2021) packages qui permettent d'appliquer toutes les procédures statistiques imagineables, des plus classiques aux plus récentes.
+In addition, the community of R users provides 18261 (on 09/24/2021) packages which allow all imaginable statistical procedures to be applied, from the most classic to the most recent.
 
 <p class="forceBreak"></p>
 
-Rstudio est à la fois le nom d'une entreprise à but non lucratif (*B Corps™*) qui met à disposition de la communauté, entre autres, des logiciels Open Source, libres et gratuits. Parmi ces logiciels : l'éditeur de programme éponyme Rstudio.
+Rstudio is both the name of a non-profit company (*B Corps ™*) which provides the community with, among other things, Open Source, free and open source software. Among these softwares: the eponymous program editor Rstudio.
 
-Rstudio est disponible également sur tous les systèmes d'exploitation classiques (Mac, Windows et Linux).
+Rstudio is also available on all classic operating systems (Mac, Windows and Linux).
 
-Rstudio permet de programmer en R dans un environnement fiable, riche et très complet. Son interface graphique a été pensée pour permettre aux utilisateurs débutants de bénéficier de fonctionnalités permettant de les aider à maîtriser le langage, et beaucoup de fonctionnalités avancées pour les utilisateurs aguerris!
+Rstudio allows programming in R in a reliable, rich and very complete environment. Its graphical interface has been designed to allow novice users to benefit from features to help them master the language, and many advanced features for seasoned users!
 
 
 ## Comprehensive R Archive Network
 
 
-![Le site : https://cran.r-project.org/](img/S01rstudio/Rlogo.svg){width=25%}
+![Site : https://cran.r-project.org/](img/S01rstudio/Rlogo.svg){width=25%}
 
 
  * Installation : https://cran.r-project.org/bin/
  * Packages : https://cran.r-project.org/web/packages/index.html
  * Task Views : https://cran.r-project.org/web/views/
 
-## Sans Rstudio (Mac OS X) {.columns-2}
+## Without Rstudio (Mac OS X) {.columns-2}
 
-### Avec un Terminal
+### Terminal
 
-![Taper R, puis "Entrée"](img/S01rstudio/Terminal.png){width=100%}
+![Type R, then "Enter"](img/S01rstudio/Terminal.png){width=100%}
 
 <p class="forceBreak"></p>
 
-### Avec le "GUI"$^\star$ {.smaller}
+### With the "GUI"$^\star$ {.smaller}
 
 
-![Démarrer l'application "R"](img/S01rstudio/RGUI.png){width=90%}
+![Start "R"](img/S01rstudio/RGUI.png){width=90%}
 
 > $^\star$GUI = *Graphical User Interface*
 
@@ -72,21 +72,21 @@ Rstudio permet de programmer en R dans un environnement fiable, riche et très c
 ## Rstudio 
 
 
-![Le site : https://www.rstudio.com/](img/S01rstudio/RStudio_Logo.png){width=25%}
+![Site : https://www.rstudio.com/](img/S01rstudio/RStudio_Logo.png){width=25%}
 
  * Installation : https://www.rstudio.com/products/rstudio/download/#download
- * Tutoriels : https://www.rstudio.com/collections/rstudio-essentials/
- * Feuilles de triche : https://www.rstudio.com/resources/cheatsheets/
+ * Tutorials : https://www.rstudio.com/collections/rstudio-essentials/
+ * Cheat-sheets : https://www.rstudio.com/resources/cheatsheets/
 
-## Explorons Rstudio
+## Explore Rstudio
 
-![Après avoir démarré l'application](img/S01rstudio/Rstudio.png){width=80%}
+![After start-up](img/S01rstudio/Rstudio.png){width=80%}
 
-## Les 4 panneaux
+## The 4 panes
 
-![Après avoir créé un nouveau script](img/S01rstudio/Rstudio4panneaux.png){width=80%}
+![After creating a new script](img/S01rstudio/Rstudio4panneaux.png){width=80%}
 
-## Les 4 panneaux -bis 
+## The 4 panes -bis 
 
 
 ```{r 4panneaux bis, echo = FALSE, out.width = "100%", cache = TRUE}
@@ -103,7 +103,7 @@ g <- ggplot(dat, aes(x, y, fill = P, label = P)) +
 print(g)
 ```
 
-## Les 4 panneaux -ter {.columns-2}
+## The 4 panes -ter {.columns-2}
 
 
 ```{r 4panneaux ter, echo = FALSE, out.width = "100%", cache = TRUE}
@@ -113,35 +113,34 @@ print(g)
 <p class="forceBreak"></p>
 
   1. Script
-  2. Environnement, historique, tutoriels
-  3. Console (le cerveau !)
-  4. Plots, packages, (fichiers)
+  2. Environnement, history, tutorials
+  3. Console (the brain!)
+  4. Plots, packages, (files)
 
-## Créer un projet
+## Create a project
 
-![Créez un projet au début de chaque cours !](img/S01rstudio/Projet.gif){width=80% loop=10}
+![Create a project at the beginning of each class!](img/S01rstudio/Projet.gif){width=80% loop=10}
 
-## Pourquoi créer un projet ?
+## Why create a project?
 
-### Réponse courte 
+### Short answer 
 
-> "*Parce que ça facilite la vie !*" -Anonyme
+> "*Because it will make your life easier!*" -Anonymous
 
-### Réponse moins courte : 
+### Less short answer:
 
- * Pas besoin de (trop) réfléchir au répertoire de travail
- * Un projet Rstudio = un projet d'analyse
- * C'est plus facile à organiser
- * Cela vous force à ranger vos analyses ...
- * Dans des dossiers dont les noms ont du sens !
+  * No need to think (too much) about the working directory
+  * An Rstudio project = an analysis project
+  * It's easier to organize
+  * It forces you to organize your analyzes ...
+  * In files whose names make sense! 
+  
+## Exercise 1
 
-## Exercice 1
 
+### Create a project. What is your "working directory"?
 
-### Créez un projet pour le lundi matin. Quel est votre répertoire de travail pour ce projet ?
+## Exercise 2
 
-## Exercice 2
-
-### Allez dans le menu "Help" puis sélectionnez "About Rstudio". Quelle est votre version de Rstudio ? Renseignez-la dans [le document partagé](https://docs.google.com/document/d/1dOspKPfs2QDQwoNth7HMEfGKLAorkxImJ1J67rzV-vk/edit)
-
+### Go to the "Help" menu then select "About Rstudio". What is your version of Rstudio? 
 
