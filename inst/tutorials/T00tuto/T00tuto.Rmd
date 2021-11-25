@@ -1,5 +1,5 @@
 ---
-title: "Apprendre à utiliser un tutoriel"
+title: "Learn to use a tutorial"
 output: learnr::tutorial
 runtime: shiny_prerendered
 description: >
@@ -11,17 +11,19 @@ library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-Dans ce cours de programmation en R, nous utiliserons de temps en temps des tutoriels qui porteront sur des thèmes abordés en cours. Ces tutoriels interactifs vous permettront de vous entraîner avec des exercices très simples.
+In this R programming course, we will occasionally use tutorials that will focus on topics covered in class. These interactive tutorials will allow you to practice with very simple exercises.
 
-## Exemple
+## Example
 
-Par exemple, utilisez la fenêtre interactive suivante pour exécuter la commande `2 + 2`, puis cliquez sur le bouton "Run Code".
+
+For example, use the following interactive window to run the command `2 + 2`, then click the "Run Code" button.
 
 ```{r two-plus-two, exercise=TRUE}
 
 ```
 
-Pour certains exercices, je vous donnerai des indices, et la solution, auxquels vous pourrez accéder en cliquant sur le bouton "Hints" et "Solution". Par exemple: ci-dessous, créez un vecteur `x` contenant les entiers de 1 à 10. Cliquez sur le bouton "Solution" pour voir la solution
+For some exercises, I will give you hints, and the solution, which you can access by clicking on the "Hints" and "Solution" button. For example: below, create a vector `x` containing the integers from 1 to 10. Click on the "Solution" button to see the solution.
+
 
 ```{r vec110, exercise=TRUE}
 
@@ -31,7 +33,7 @@ Pour certains exercices, je vous donnerai des indices, et la solution, auxquels 
 x <- 1:10
 ```
 
-Ci-dessous, déclarez un vecteur `x` contenant les entiers de 1 à 10 **au carré**. Cliquez sur les indices successifs : le dernier indice sera la solution !
+Below, declare a vector `x` containing the integers from 1 to 10 ** squared **. Click on the successive clues: the last clue will be the solution! 
 
 ```{r vec110bis, exercise=TRUE}
 
@@ -49,13 +51,14 @@ Ci-dessous, déclarez un vecteur `x` contenant les entiers de 1 à 10 **au carr�
 x <- (1:10)^2
 ```
 
-Les sections suivantes contiennent des exercices sur les structures de données en R, la lecture de données, ainsi qu'un entraînement au clavier pour se rappeler comment écrire les symboles essentiels pour programmer en R ! 
+The following sections contain exercises on R data structures, reading data, as well as keyboard practice to remember how to write the essential symbols for programming in R!
 
-## Entraînement clavier
 
-Commençons par l'entraînement au clavier !
+## Keyboard training
 
-En effet, en R, nous avons souvent besoin de caractères spéciaux dont l'utilisation n'est pas courante. Ce quiz vous permet de vous entraîner. Entrez la chaîne de caractères demandée et cliquez sur le bouton "Submit".
+Let's start with keyboard training!
+
+Indeed, in R, we often need special characters that are not commonly used. This quiz allows you to practice. Enter the requested character string and click on the "Submit" button.
 
 ```{r quiz}
 quiz(
