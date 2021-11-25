@@ -1,5 +1,5 @@
 ---
-title: "Graphiques avec ggplot2"
+title: "Graphs with ggplot2"
 output: learnr::tutorial
 runtime: shiny_prerendered
 description: >
@@ -15,53 +15,52 @@ data("nutrimenu", package = "debuter")
 couleurs <- c("steelblue", "limegreen", "darkolivegreen", "darkorchid")
 ```
 
-Le package `ggplot2` permet de réaliser facilement des graphiques avec une syntaxe unifiée. Dans ce tutoriel, nous allons nous entraîner avec les données "nutrimenu".
+The `ggplot2` package allows you to easily create graphs with a unified syntax. In this tutorial, we are going to practice with the "nutrimenu" data.
 
-## Commande de base
+## Basic command
 
-La commande de base aura l'allure suivante
+The basic command will look like this
 
 ```
 ggplot(data, aes(x, y)) + geom_****()
 ```
-Où
 
-* `ggplot` dessine le canevas de base
-* `data` est une data-frame contenant toutes les informations nécessaires au dessin du graphe
-* `aes()` est une fonction qui permet de déclarer les paramètres esthétiques du graphe (les coordonnées des points, des lignes ou des barres, la façon de les colorer, les étiquettes etc...)
-* `geom_****` est une fonction qui spécifie une "couche de dessin"
+Where
 
-Dans ce tuto, nous verrons les fonctions suivantes :
+* `ggplot` draws an empty canvas
+* `data` is a data-frame containing all the information needed to draw the graph
+* `aes()` is a function which allows to declare the aesthetic parameters of the graph (the coordinates of points, lines or bars, the way to color them, the labels etc ...)
+* `geom_****` is a function that specifies a "drawing layer"
 
+In this tutorial, we will see the following functions:
 
-Fonction | Utilité
+Function | Result
 ---------|---------
-`geom_bar`, `geom_col` | Diagrammes en bâtons
-`geom_point`, `geom_jitter` | Nuages de points
-`geom_line` | Dessins de lignes
-`geom_histogram` | Histogrammes
-`geom_boxplot` | Boites à moustaches
-`geom_density` | Densités
-`geom_violin` | Diagrammes en violon
+`geom_bar`, `geom_col` | Bar plot
+`geom_point`, `geom_jitter` | Scatterplot
+`geom_line` | Line plot
+`geom_histogram` | Histograms
+`geom_boxplot` | Boxplot
+`geom_density` | Density plot
+`geom_violin` | Violin plot
 
-Tout en faisant les exercices, familiarisez vous avec la documentation de ggplot2 : https://ggplot2.tidyverse.org/
+While doing the exercises, familiarize yourself with the documentation for ggplot2: https://ggplot2.tidyverse.org/
 
-## Les données nutrimenu
+## The nutrimenu data
 
-Les données contenues dans la table nutrimenu contiennent les données nutritionnelle de `r nrow(nutrimenu)` recettes. La table est reportée ci-après.
-
+The data in the `nutrimenu` table contains the nutritional data of `r nrow nutrimenu)` recipes. The table is shown below.
 
 ```{r shownutrimenu}
 DT::datatable(nutrimenu)
 ```
 
-La colonne "Type" correspond au type de recettes.
+The "Type" columns contains the recipe type.
 
-Pour plus d'informations, rendez vous sur le site Nutriwi (https://www.nutriwi.com/).
+For more information, go to Nutriwi (https://www.nutriwi.com/).
 
-## Representer une variable discrete
+## Represent a discrete variable
 
-Complétez la commande suivante pour obtenir un diagramme en bâtons des types de recettes
+Complete the following command to get a bar chart of recipe types
 
 ```{r baton, exercise = TRUE}
 ggplot( ) + geom_
@@ -71,7 +70,7 @@ ggplot( ) + geom_
 ggplot(nutrimenu, aes(Type)) + geom_bar()
 ```
 
-Changez les couleurs et le thème du graphe en complétant la prochaine commande.
+Change the colors and the theme of the graph by completing the next command.
 
 ```{r baton2, exercise = TRUE}
 ggplot( , aes(fill = )) + 
@@ -85,20 +84,20 @@ ggplot(nutrimenu , aes(Type, fill = Type)) +
    theme_bw()
 ```
 
-Utilisez la fonction `cut` de la façon suivante pour transformer la variable Proteines (continue) en une variable qualitative.
+Use the `cut` function as follows to transform the Proteines (continuous) variable into a qualitative variable.
 
 ```{r cutProteines, exercise = TRUE}
 cut(nutrimenu$Proteines, c(-1, 6, 14))
 ```
 
 ```{r cutProteines-solution}
-# Il n'y a rien de plus à faire : exécutez juste la commande et observez son résultat
+# There is nothing more to do: just run the command and observe its result
 cut(nutrimenu$Proteines, c(-1, 6, 14))
-# Si vous le souhaitez, vous pouvez utiliser la fonction table sur ce résultat
+# If you want, you can use the table function on this result
 table(cut(nutrimenu$Proteines, c(-1, 6, 14)))
 ```
 
-Remarquez comme on peut utiliser cette astuce dans un graphe !
+Notice how we can use this trick in a graph!
 
 ```{r cutProteinesplot, exercise = TRUE}
 ggplot(nutrimenu, aes(cut(Proteines, c(-1, 6, 14)))) +
@@ -106,11 +105,11 @@ ggplot(nutrimenu, aes(cut(Proteines, c(-1, 6, 14)))) +
   theme_bw()
 ```
 
-Ce n'est pas très joli comme commande et un peu difficile a lire. Parfois, plutôt que d'imbriquer les commandes, il vaut mieux créer une nouvelle variable et utiliser cette nouvelle variable dans la commande graphique.
+It is not very pretty as a command and a little difficult to read. Sometimes, rather than nesting commands, it's better to create a new variable and use that new variable in the graphics command.
 
-## Representer une variable continue
+## Represent a continuous variable
 
-Complétez la fonction suivante pour réaliser un boxplot de la variable `Energie.`
+Complete the following function to carry out a boxplot of the variable `Energie`.
 
 ```{r energiebox, exercise = TRUE}
 ggplot(nutrimenu) + geom
@@ -122,7 +121,7 @@ ggplot(nutrimenu, aes(Energie)) +
   theme_bw()
 ```
 
-Sur le même modèle, faites un diagramme en violon.
+On the same model, make a violin plot
 
 ```{r energieviolon, exercise = TRUE}
 ggplot(nutrimenu) + geom
@@ -134,7 +133,7 @@ ggplot(nutrimenu, aes(x = Energie, y = 0)) +
   theme_bw()
 ```
 
-Superposez les deux et ajustez les paramètres de largeur et de couleur pour avoir un joli graphe.
+Overlap the two and adjust the width and color settings to have a nice graph.
 
 ```{r energieboxviolon, exercise = TRUE}
 ggplot(nutrimenu) + 
@@ -143,10 +142,10 @@ ggplot(nutrimenu) +
 ```
 
 ```{r energieboxviolon-hint}
-## Utilisez la fonction theme
-### - sur l'élément axis.text.y
-### - et sur l'élément axis.ticks.y
-### - que vous devrez transformer en element_blank()
+## Use the theme function
+### - on the axis.text.y element
+### - and on the axis.ticks.y element
+### - which you will need to turn into element_blank ()
 ```
 
 ```{r energieboxviolon-solution}
@@ -159,7 +158,7 @@ ggplot(nutrimenu, aes(x = Energie, y = 0)) +
         axis.ticks.y = element_blank())
 ```
 
-Faites maintenant un histogramme de la composition en Lipides.
+Now make a histogram of the lipid composition.
 
 ```{r vitamineChisto, exercise = TRUE}
 ggplot(nutrimenu) + 
@@ -173,9 +172,9 @@ ggplot(nutrimenu, aes(Lipides)) +
   labs(x = "Lipides (g/100 g)", y = "Nb. d'occurences")
 ```
 
-## Représenter sur le même graphe une variable qualitative et une variable quantitative
+## Represent on the same graph a qualitative variable and a quantitative variable
 
-Exécutez la commande suivante puis modifiez la pour faire en sorte que chaque boite soit d'une couleur différente.
+Run the following command then modify it so that each box is a different color.
 
 ```{r sucres, exercise = TRUE}
 ggplot(nutrimenu, aes(Type, Glucides)) + geom_boxplot()
@@ -189,13 +188,13 @@ ggplot(nutrimenu, aes(Type, Glucides, color = Type)) +
   labs(x = "", y = "Glucides (g/100 g)", color = "")
 ```
 
-J'ai sélectionné 3 couleurs pour vous, et utilisé la commande suivante pour les stocker dans un vecteur s'appelant `couleurs`.
+I selected 3 colors for you, and used the following command to store them in a vector called `couleurs`.
 
 ```{r, eval = FALSE, echo = TRUE}
 couleurs <- c("steelblue", "limegreen", "darkolivegreen")
 ```
 
-Ce vecteur est utilisé ci-dessous. Exécutez ce code et observez le résultat. Essayez ensuite d'autres couleurs de votre choix : utilisez des noms de couleur (voir le résultat de la fonction `colors()`) ou des codes hexadécimaux.
+This vector is used below. Run this code and observe the result. Then try other colors of your choice: use color names (see the result of the `colors()` function) or hexadecimal codes.
 
 ```{r fibres, exercise = TRUE}
 couleurs <- c("steelblue", "limegreen", "darkolivegreen")
@@ -204,9 +203,9 @@ ggplot(nutrimenu, aes(Fibres, Type, fill = Type)) +
   scale_fill_manual(values = couleurs)
 ```
 
-## Representer un nuage de points
+## Scatterplot
 
-Complétez la commande suivante pour représenter l'énergie en fonction de la teneur en Glucides des recettes.
+Complete the following command to represent the energy according to the carbohydrate content of the recipes.
 
 ```{r energieVitC, exercise = TRUE}
 ggplot() + geom
@@ -219,7 +218,7 @@ ggplot(nutrimenu, aes(Glucides, Energie)) +
   labs(y = "Energie (kCal / 100g)", x = "Glucides (g/100 g)")
 ```
 
-Coloriez les points, d'abord avec la variable Proteines puis avec la variable Type. Que Remarquez vous ?
+Color the points, first with the Proteines variable and then with the Type variable. What do you notice?
 
 ```{r energieVitCcolor, exercise = TRUE}
 ggplot() + geom
@@ -239,18 +238,16 @@ ggplot(nutrimenu, aes(Glucides, Energie, color = Type)) +
 
 ```
 
-Vous pouvez changer des couleurs définies sur une variable quantitative avec la fonction `scale_color_continuous`, ou `scale_color_gradient`, ou `scale_color_gradientn`, ou des couleurs définies sur une variable discrète avec la fonction `scale_color_manual` ou `scale_colour_brewer`. Testez ces fonctions sur l'exemple précédent.
+You can change colors defined on a quantitative variable with the function `scale_color_continuous`, or `scale_color_gradient`, or `scale_color_gradientn`, or colors defined on a discrete variable with the `scale_color_manual` or `scale_colour_brewer` function. Test these functions on the previous example.
 
 
+## Combine graphs
 
+The functionalities of the `ggpubr` package allow, among other things, to combine graphs from `ggplot` objects.
 
-## Combiner des graphes
+Note: other packages exist to combine `ggplot` objects into complex graphs, like `cowplot`, `gridExtra` or `patchwork`, which is a testament to the success of `ggplot2`.
 
-Les fonctionnalités du package `ggpubr` permettent, entre autres, de combiner des graphes à partir d'objets `ggplot`. 
-
-Remarque : d'autres package existent pour combiner des objets `ggplot` en graphes complexes, comme `cowplot`, `gridExtra` ou `patchwork`, ce qui témoigne du succès de `ggplot2`.
-
-Exécutez les commandes suivantes et observez comment elles permettent la création d'un graphe complexe en plusieurs panneaux.
+Run the following commands and see how they allow the creation of a complex graph in multiple panels.
 
 ```{r ggarrange, exercise = TRUE}
 library(ggpubr)
@@ -272,14 +269,14 @@ ggarrange(bxp, jp, vp, dens, ncol = 2, nrow = 2,  common.legend = TRUE, legend =
 
 
 
-Voici les arguments clefs de la fonction `ggarrange.` N'oubliez pas que vous pouvez accéder à ces informations et bien plus en appelant le fichier d'aide de la fonction grâce à la commande `?ggarrange`.
+Here are the key arguments of the `ggarrange` function. Remember that you can access this information and more by calling the function's help file with the `?ggarrange` command.
 
-Argument | Utilité 
-----------|--------
-`ncol` | Nombre de colonnes de la grille de graphes.
-`nrow` | Nombre de lignes de la grille de graphes.
-`widths` | Vecteur des largeurs des graphes.
-`heights` | Vecteur des hauteurs des graphes.
-`legend` | Chaîne de caractère spécifiant la position de la légende (`"top"`, `"bottom"`, `"left"` ou `"right"`). Pour supprimer la légende, utilisez `"none"`.
-`common.legend` | Valeur logique. La valeur par défaut est `FALSE`. Si `TRUE`, une légende unique commune sera créée.
+Argument | Use
+---------- | --------
+`ncol` | Number of columns in the graph grid.
+`nrow` | Number of rows in the graph grid.
+`widths` | Vector of the widths of the graphs.
+`heights` | Vector of the heights of the graphs.
+`legend` | Character string specifying the position of the legend (`"top"`, `"bottom"`, `"left"` or `"right"`). To remove the caption, use `"none"`.
+`common.legend` | Logical value. The default is `FALSE`. If `TRUE`, a common unique legend will be created.
 

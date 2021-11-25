@@ -1,5 +1,5 @@
 ---
-title: "Rappel : les packages en R"
+title: "Packages in R"
 output: learnr::tutorial
 runtime: shiny_prerendered
 description: >
@@ -11,33 +11,33 @@ library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Installation de packages
+## Installing packages
 
-Il existe plusieurs *repositories* depuis lesquels on peut installer des packages R. En voici quelques uns :
+There are several *repositories* from which you can install R packages. Here are a few:
 
- * Le CRAN (pour *Comprehensive R Archive Network*),
- * *Bioconductor*,
- * *GitHub*.
+  * The CRAN (for *Comprehensive R Archive Network*),
+  * *Bioconductor*,
+  * *GitHub*.
 
-Il en existe d'autres, mais ces trois-ci sont vraiment les plus importants.
+There are others, but these three are really the most important.
 
 ### CRAN
 
-C'est le *repository* "originel" qui met à disposition (à l'heure où ce tutoriel a été écrit) 17618 packages. La liste de ces packages est disponible [ici](https://cran.r-project.org/web/packages/available_packages_by_name.html).
+It is the "original" *repository* which provides (at the time of this tutorial) 17618 packages. The list of these packages is available [here](https://cran.r-project.org/web/packages/available_packages_by_name.html).
 
-La commande pour installer un package depuis cette source est
+The command to install a package from this source is
 
 ```
-install.packages("nom_du_package")
+install.packages("package_name")
 ```
 
-Cette commande installera le package `nom_du_package` dans la librairie par défaut de votre session. Pour savoir exactement où cette librairie se trouve, vous pouvez exécuter la commande 
+This command will install the `package_name` package in the default library of your session. To find out exactly where this library is located, you can run the command
 
 ```
 .libPaths()
 ```
 
-Le résultat depend de beaucoup de choses, y compris du système d'exploitation et de la version de R que vous utilisez. Chez moi, le résultat est le suivant :
+The result depends on a lot of things, including which operating system and which version of R you are using. At home, the result is the following:
 
 ```
 "/Library/Frameworks/R.framework/Versions/4.0/Resources/library"
@@ -45,49 +45,48 @@ Le résultat depend de beaucoup de choses, y compris du système d'exploitation 
 
 ### Bioconductor
 
-Ce *repository* est essentiel pour les utilisateurs qui souhaitent faire de la bioinformatique avec R. Il met à disposition 1974 *software packages*, 398 *experiment data packages*, 968 *annotation packages*, et 28 *workflows* à la date où ce tutoriel a été écrit. Vous pourrez trouver sur Bioconductor des *packages* essentiels comme [`limma`](https://bioconductor.org/packages/release/bioc/html/limma.html) pour faire de l'analyse différentielle de données -omiques, ou encore [`org.Hs.eg.db`](https://bioconductor.org/packages/release/data/annotation/html/org.Hs.eg.db.html) qui contient des annotations du génome humain. Tout cela, et bien plus, est disponible [à cette adresse](https://bioconductor.org).
+This *repository* is essential for users who wish to do bioinformatics with R. It provides 1974 *software packages*, 398 *experiment data packages*, 968 *annotation packages*, and 28 *workflows* on the date when this tutorial has been written. You can find essential *packages* on Bioconductor like [`limma`] (https://bioconductor.org/packages/release/bioc/html/limma.html) for doing differential analysis of -omics data, or again [`org.Hs.eg.db`] (https://bioconductor.org/packages/release/data/annotation/html/org.Hs.eg.db.html) which contains annotations of the human genome. All of this, and more, is available [at this address] (https://bioconductor.org).
 
-Pour installer un package Bioconductor, vous devrez utiliser la fonction
+To install a Bioconductor package, you will need to use the function
 
 ```
-BiocManager::install("nom_du_package")
+BiocManager::install("package_name")
 ```
 
-Attention, pour utiliser cette fonction, il faudra d'abord installer le package `BiocManager` ! (avec la commande `install.packages("BiocManager")`)
+Please note, to use this function, you must first install the `BiocManager` package! (with the command `install.packages("BiocManager")`)
 
 
 ### GitHub
 
-De nombreux développeurs utilisent un système de gestion de version pour travailler, et certains utilisent GitHub pour héberger le fruit de leurs efforts. Depuis peu, il est possible d'installer directement des packages depuis ces systèmes d'hébergement. Attention, parfois c'est la version de développement d'un package qui se trouve sur GitHub et non la version la plus stable !
+Many R programmers (including me) use a version control system to work, and some use GitHub to host their efforts. Recently, it has been possible to install packages directly from these hosting systems. Be careful, sometimes it's the development version of a package that is on GitHub and not the most stable version!
 
-Pour installer un package depuis GitHub, vous pouvez utiliser la commande 
-
-```
-remotes::install_github("username/nom_du_package")
-```
-
-Pour utiliser cette commande, il faudra d'abord installer le package `remotes` ! (avec la commande `install.packages("remotes")`)
-
-
-## Chargement de packages
-
-Il existe deux fonctions en R qui permettent de charger des packages : `require` et `library`, qui s'utilisent de la même façon
+To install a package from GitHub, you can use the command
 
 ```
-require(nom_du_package)
-require("nom_du_package")
-library(nom_du_package)
-library("nom_du_package")
+remotes::install_github("username/package_name")
 ```
 
-### Si le package existe
+To use this command, you must first install the `remotes` package! (with the command `install.packages("remotes")`)
 
-Lorsque le *package* `nom_du_package` existe, les deux fonctions permettent toutes les deux l'utilisation des fonctions de ce package. La différence entre les deux se situe dans ce que la fonction "renvoie"
+## Loading packages
 
-  * `library` renvoie les *packages* déjà chargé,
-  * `require` renvoie `TRUE`
+There are two functions in R that allow you to load packages: `require` and` library`, which are used in the same way.
+
+```
+require(package_name)
+require("package_name")
+library(package_name)
+library("package_name")
+```
+
+### If the package exists
+
+When the *package* `package_name` exists, both functions allow the use of functions from that package. The difference between the two is in what the function "returns"
+
+   * `library` returns the *packages* already loaded,
+   * `require` returns `TRUE`
   
-Pour exercice : assignez à un objet appelé `obj1` et `obj2` le résultat, respectivement, de la commande `library(limma)` et de la commande `require(limma)`.
+Exercise: assign to an object called `obj1` and` obj2` the result, respectively, of the command `library(limma)` and of the command `require(limma)`.
 
 ```{r retourLimma, exercise = TRUE}
 
@@ -100,14 +99,14 @@ obj2 <- require(limma)
 obj2
 ```
 
-### Si le package n'existe pas
+### If the package does not exist
 
-La différence la plus importante entre ces deux fonctions apparaît quand on souhaite charger un *package* qui n'existe pas, dans ce cas,
+The most important difference between these two functions appears when we want to load a *package* which does not exist, in this case,
 
- * `library` génère une erreur,
- * `require` génère un *warning*, et renvoie la valeur `FALSE`.
+  * `library` generates an error,
+  * `require` generates a *warning*, and returns the value `FALSE`.
 
-Pour exercice : assignez à un objet appelé `obj1`, resp. `obj2`, le résultat, respectivement, de la commande `library(limma)` et de la commande `require(limma)`.
+Exercise: assign to an object called `obj1`, resp. `obj2`, the result of the `library(limma)` command and the `require(limma)` command, respectively.
 
 ```{r retourLicorne, exercise = TRUE}
 
@@ -120,9 +119,8 @@ obj2 <- require(licorne)
 obj2
 ```
 
-### Quelle fonction utiliser ?
+### Which function to use?
 
-Il y a d'autres différences entre les deux fonctions, cf. la page d'aide commune des deux fonctions accessible avec la commande `?library` ou `?require`.
+There are other differences between the two functions, cf. the common help page of the two functions accessible with the command `?library` or `?require`.
 
-Mon conseil : utilisez `library` car cela générera une erreur si vous avez oublié d'installer un *package* ! 
-
+My advice: use `library` as it will generate an error if you forgot to install a *package*!

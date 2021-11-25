@@ -1,5 +1,5 @@
 ---
-title: "Les tutoriels dans Rstudio"
+title: "Tutorials in Rstudio"
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---
@@ -9,16 +9,12 @@ library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-Comme tout le cours est en fait un "package" R, quand vous l'aurez installé, vous pourrez accéder aux tutoriels dans l'onglet "Tutorial" dans le panneau qui se trouve en haut à droite.
+As the whole course is in fact an R "package" (called `ReMUSE`), when you have it installed, you will be able to access the tutorials in the "Tutorial" tab in the panel at the top right.
 
-Ces tutoriels sont ordonnés par ordre alphabétique, c'est pour cela que nous leur avons donné des noms un peu particuliers : 
+These tutorials are ordered in alphabetical order, which is why we have given them a little particular names:
 
-  * `T00tuto` pour le tout premier
-  * `T01rstudio` pour celui que vous lisez actuellement
-  * `T02packages` pour s'entraîner avec les packages
-  * `T03objets` pour les objets de base
-  * `T04dplyr` pour `dplyr`
-  * `T05ggplot2` pour `ggplot2`
-  * `T06visu` pour la visualisation
-  * `T07tests` pour les tests d'hypothèses
-  
+  * `T00tuto` for the very first one
+  * `T01rstudio` for the one you are currently reading
+  * `T02packages` for packages
+  * `T03ggplot2` for `ggplot2`
+  * `T04pheatmap` for hetmaps
