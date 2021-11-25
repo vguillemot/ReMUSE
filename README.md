@@ -1,6 +1,6 @@
 ## Course's website
 
-- The website: <https://vguillemot.github.io/remuse/>
+- The website: <https://vguillemot.github.io/ReMUSE/>
 
 ****
 
