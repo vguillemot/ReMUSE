@@ -1,0 +1,100 @@
+---
+title: "Package Installation"
+author: "Vincent Guillemot<br/>Amaury Vaysse"
+date: "Lundi 15/11/2021"
+output: 
+  ioslides_presentation:
+    css: styles.css
+vignette: >
+  %\VignetteIndexEntry{02packages}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  echo = TRUE
+)
+```
+
+
+## 
+
+![](img/S02packages/fripouille.001.jpeg){width=100%}
+
+## 
+
+![](img/S02packages/fripouille.002.jpeg){width=100%}
+
+## 
+
+![](img/S02packages/fripouille.003.jpeg){width=100%}
+
+## 
+
+![](img/S02packages/fripouille.004.jpeg){width=100%}
+
+## 
+
+![](img/S02packages/fripouille.005.jpeg){width=100%}
+
+## 
+
+![](img/S02packages/fripouille.006.jpeg){width=100%}
+
+## 
+
+![](img/S02packages/fripouille.007.jpeg){width=100%}
+
+## 
+
+![](img/S02packages/fripouille.008.jpeg){width=100%}
+
+## 
+
+![](img/S02packages/fripouille.009.jpeg){width=100%}
+
+## 
+
+![](img/S02packages/fripouille.010.jpeg){width=100%}
+
+## Install packages from {.smaller}
+
+
+  * Bioconductor ?
+    1. First install `BiocManager` from CRAN
+    2. Run the R command `BiocManager::install("package_name")`
+  * GitHub ?
+    1. Install `devtools`
+    2. Run the R command `devtools::install_github("username/repository")`.
+  * Source code ?
+    1. Put the `source.tar.gz` in your working directory...
+    2. Run the R command `install.package("source.tar.gz", repos = NULL, type = "source")`.
+
+# Exercises
+
+## Install limma
+
+limma is the favorite package of anyone that wants to analyze gene expression data (microarray, RNA-seq, NanoString etc.)
+
+Install it with the command 
+
+```{r install, eval = FALSE}
+BiocManager::install("limma")
+```
+
+## Explore the package
+
+  1. Load :  `library(limma)`
+  2. Look at the main help page
+  
+```
+?`limma-package`
+```
+
+  3. Look at the first vignette : `vignette("intro", package = "limma")`
+
+
+

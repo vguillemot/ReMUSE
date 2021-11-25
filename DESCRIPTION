@@ -1,11 +1,20 @@
 Package: ReMUSE
-Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Title: The package for the e-MUSE R course
+Version: 0.1
+Authors@R: 
+    c(person(given = "Vincent",
+           family = "Guillemot",
+           role = c("aut", "cre"),
+           email = "vincent.guillemot@pasteur.fr"))  
+Description: This package contains all the slides and data-sets used during the course ReMUSE.
+Depends: R (>= 3.5.0)
+Imports: learnr, dplyr, ggplot2, RColorBrewer, pheatmap
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
