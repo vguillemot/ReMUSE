@@ -8,7 +8,7 @@
 
 |  Date  | Theme |  Link to slides | Tutorial |
 |--------|------------|-------------|---------------------------|----------|
-| Nov. 25 | Programme | [[HTML](vignettes/S00programme.html) [PDF](vignettes/S00programme.pdf)] | [[Lien](https://learnr.pasteur.fr/debuter/T00tuto/)] |
+| Nov. 25 | Programme | [[HTML](vignettes/S00programme.html) [PDF](vignettes/S00programme.pdf)] | [[Lien](https://learnr.pasteur.fr/remuse/T00tuto/)] |
 | Nov. 22 | R & Rstudio  | [[HTML](vignettes/S01rstudio.html) [PDF](vignettes/S01rstudio.pdf)] | [[Lien](https://learnr.pasteur.fr/debuter/T01rstudio/)] |
 | Nov. 22 | Packages  | [[HTML](vignettes/S02packages.html) [PDF](vignettes/S02packages.pdf)] | [[Lien](https://learnr.pasteur.fr/debuter/T02packages/)] |
 | Nov. 25 | ggplot2   | [[HTML](vignettes/S03ggplot2.html) [PDF](vignettes/S03ggplot2.pdf)] | [[Lien](https://learnr.pasteur.fr/debuter/T05ggplot2/)] |
