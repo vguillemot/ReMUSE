@@ -1,5 +1,5 @@
 ---
-title: "Principal Component ANalysis"
+title: "Principal Component Analysis"
 author: "Vincent Guillemot"
 date: "Dec. 2"
 output: 
@@ -72,30 +72,19 @@ Covariance and correlation :
 Principal Component Analysis: 
 
   * principle (vocabulary!), method, a little bit of theory
-  * visualization with `factoextra`
-
+  * PCA with `FactoMineR` and visualization with `factoextra`
 
 
 # Covariance and correlation
 
 ## A little bit of history {.columns-2}
 
-Karl Pearson
-
-\newcolumn
-
-Francis Galton
+![](img/S05pca/Galton.png){width="100%"}
 
 
-## Covariance, regression and more
+<p class="forceBreak"></p>
 
-
-
-
-## A little bit of history
-
-
-
+![](img/S05pca/Height.png){width="100%"}
 
 
 ## On fruits {.columns-2}
@@ -126,9 +115,50 @@ ggplot(fruits, aes(Phosphore, Potassium)) +
   geom_point(color = "white", shape  = 2) + theme_dark() + scale_y_log10() + scale_x_log10() + theme(panel.grid = element_line(color = "lightgrey"))
 ```
 
+## Barycenter (reminder)
+
+```{r bary, echo = FALSE, warning=FALSE}
+ggplot(fruits, aes(Phosphore, Potassium)) + 
+  geom_point(alpha = 0.5) + 
+  annotate("point", 
+           x = mean(fruits$Phosphore), 
+           y = mean(fruits$Potassium),
+           shape = 17, size = 5, col = 2) +
+  annotate("label", 
+         x = mean(fruits$Phosphore) + 10, 
+         y = mean(fruits$Potassium) + 50,
+         label = "Barycenter",
+         size = 5, col = 2) +
+  annotate("text", 
+       x = mean(fruits$Phosphore) + 6, 
+       y = 50,
+       label = "Mean of x",
+       col = 2) +
+  annotate("text", 
+     x = 6.5, 
+     y = mean(fruits$Potassium) + 50,
+     label = "Mean of y",
+     col = 2) +
+  annotate("segment", 
+       x = mean(fruits$Phosphore), 
+       xend = 0,
+       y = mean(fruits$Potassium),
+       yend = mean(fruits$Potassium),
+       col = 2 , linetype = "dashed") +
+  annotate("segment", 
+     x = mean(fruits$Phosphore), 
+     xend = mean(fruits$Phosphore),
+     y = mean(fruits$Potassium),
+     yend = 0,
+     col = 2 , linetype = "dashed") +
+  scale_x_log10() + scale_y_log10() +
+  theme_bw()
+```
+
+
 ## Covariance (reminder)
 
-How far away is a "dot" from the barycenter ? Individual rectangle area  : 
+How far away is a "dot" from the barycenter ? Individual rectangle area : 
 
 \[
    \left(x_i - \bar x\right) \times \left(y_i - \bar y\right)
@@ -249,7 +279,7 @@ Pairs of points: select two samples $i$ and $j$.
 \]
 where $n_C$ is the number of concordant pairs, $n_D$ the number of discordant pairs and $n_0$ total number of pairs.
 
-## Comparison {.columns-2}
+## "Exercise": compare and comment {.columns-2}
 
 Pearson: nice linear relationship.
 
@@ -337,7 +367,6 @@ ggplot(xy, aes(x)) +
 ```
 
 ## Exercise / discussion: What did I do? {.columns-2}
-
 
 ```{r phopolog_recall_what, echo = FALSE, fig.width=3, fig.height=3, out.height="100%", out.width="100%"}
 ggplot(fruits, aes(Phosphore, Potassium)) + 
@@ -427,18 +456,5 @@ ggplot(xy) +
   theme_bw() + coord_equal()
 ```
 
-
-# PCA with FactoMineR
-
-## The PCA function
-
-```{r pca_first_look}
-respca <- PCA(
-  X = fruits,        ## Data
-  scale.unit = TRUE, ## Standardize
-  ncp = 5,           ## Nb of dimensions
-  quali.sup = 1:2,   ## Add. qual. variables
-  graph = FALSE      ## No graphs
-)
-```
+# Switching to another set of slides...
 
