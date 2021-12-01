@@ -11,3 +11,9 @@ title {
 h1,h2,h3 {
     color: #048;
 }
+
+<style>
+.forceBreak { -webkit-column-break-after: always; break-after: column; }
+</style>
+
+\newcommand{\newcolumn}{<p class="forceBreak"></p>}

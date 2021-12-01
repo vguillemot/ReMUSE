@@ -1,0 +1,444 @@
+---
+title: "Principal Component ANalysis"
+author: "Vincent Guillemot"
+date: "Dec. 2"
+output: 
+    ioslides_presentation:
+        css: styles.css
+vignette: >
+  %\VignetteIndexEntry{05pca}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+<style>
+.forceBreak { -webkit-column-break-after: always; break-after: column; }
+</style>
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  echo = TRUE
+)
+library(ggplot2)
+```
+
+## First things first
+
+We will need the packages `corrplot`, `FactoMineR` and `factoextra`:
+
+ * Check that `corrplot`, `FactoMineR` and `factoextra` are installed
+ * If not, install them, then load them
+
+```{r RColorBrewer, message=FALSE}
+library(corrplot)
+library(FactoMineR)
+library(factoextra)
+```
+
+We also need to load `dplyr`, `tidyr` and the "fruits" data, : 
+
+```{r data, message=FALSE}
+library(dplyr)
+library(tidyr)
+data("fruits", package = "ReMUSE")
+```
+
+
+## Unsupervised/Exploratory vs Supervised Analysis
+
+ * In the supervised methods, we observe both a set of features/variables  (e.g. gene expression) for each object, as well as a response or outcome variable (e.g. metastasis information or survival information of the patients).
+ * The goal is then to predict the response using the variables (e.g. which genes predict best or are associated with the survival of the patients).
+ * Here we instead focus on exploratory analysis, we are not interested (yet) in prediction.
+
+## The two exploratory methods we are interested in... 
+
+
+ * **Principal Component Analysis**, whose goal is to extract the most "important" sources of variability in the quantitative data 
+ 
+ * **Hierachical Agglomerative Clustering**, whose goal is to define *clusters* of samples
+
+
+## Program for this morning
+
+
+Covariance and correlation : 
+
+  * reminders, and/or not
+  * visualization
+
+
+Principal Component Analysis: 
+
+  * principle (vocabulary!), method, a little bit of theory
+  * visualization with `factoextra`
+
+
+
+# Covariance and correlation
+
+## A little bit of history {.columns-2}
+
+Karl Pearson
+
+\newcolumn
+
+Francis Galton
+
+
+## Covariance, regression and more
+
+
+
+
+## A little bit of history
+
+
+
+
+
+## On fruits {.columns-2}
+
+```{r phopo, echo = FALSE, fig.width=3, fig.height=3, out.height="100%", out.width="100%"}
+library(ggplot2)
+ggplot(fruits, aes(Phosphore, Potassium)) + 
+  geom_point() + theme_bw()
+```
+
+\newcolumn
+
+```{r phopolog, echo = FALSE, fig.width=3, fig.height=3, out.height="100%", out.width="100%"}
+ggplot(fruits, aes(Phosphore, Potassium)) + 
+  geom_point() + theme_bw() + scale_y_log10() + scale_x_log10()
+```
+
+## Exercise {.columns-2}
+
+Make a graph as similar as the one the right!
+
+Try to focus on the essential.
+
+<p class="forceBreak"></p>
+
+```{r phopolog2, echo = FALSE, fig.width=3, fig.height=3, out.height="100%", out.width="100%"}
+ggplot(fruits, aes(Phosphore, Potassium)) + 
+  geom_point(color = "white", shape  = 2) + theme_dark() + scale_y_log10() + scale_x_log10() + theme(panel.grid = element_line(color = "lightgrey"))
+```
+
+## Covariance (reminder)
+
+How far away is a "dot" from the barycenter ? Individual rectangle area  : 
+
+\[
+   \left(x_i - \bar x\right) \times \left(y_i - \bar y\right)
+\]
+
+The covariance is (almost) the mean area:
+
+\[
+   \operatorname{cov} (x, y) = \frac{1}{n-1} \sum_{i=1}^n\left(x_i - \bar x\right) \times \left(y_i - \bar y\right)
+\]
+
+
+## Correlation coefficient
+
+Covariance can vary between $-\infty$ and $+\infty$.
+
+Correlation is, by definition, a measure of linear relationship between -1 and +1:
+
+  * -1 represents a perfect negative linear relationship,
+  * 0 represents no linear relationship,
+  * +1 represents a perfect positive linear relationship.
+  
+## Pearson's correlation coefficient  
+  
+
+\[
+  \operatorname{cor}(x, y) = \frac{\displaystyle\sum_{i = 1}^n (x_i - \bar x)(y_i - \bar y)}{\displaystyle\sqrt{\sum_{i = 1}^n (x_i - \bar x)^2}\sqrt{\sum_{i = 1}^n (y_i - \bar y)^2}}
+\]
+
+... in short...
+
+\[
+  \operatorname{cor}(x, y) = \frac{\operatorname{cov}(x, y)}{\operatorname{sd}(x) \operatorname{sd}(y) }
+\]
+
+## "Exercises" {.columns-2}
+
+Covariance between two variables with R: 
+
+```{r covr}
+cov(fruits$Potassium, 
+    fruits$Phosphore)
+```
+
+<p class="forceBreak"></p>
+
+
+Correlation between two variables with R: 
+
+```{r corr}
+cor(fruits$Potassium, 
+    fruits$Phosphore)
+```
+
+## Exercise / challenge !
+
+Compute the correlation between `fruits$Potassium` and `fruits$Phosphore`. 
+
+### **Constraints**! 
+
+Use **only** the following functions/operations:
+
+ * `length` to compute $n$,
+ * `*` to multiply, `/` to divide,  `-` to substract,
+ * `mean` to compute the mean,
+ * `sd` to compute the standard-deviation,
+ * `sum` for the "$\sum_{i=1}^n$"
+ * as many brackets as you need
+
+
+## Spearman's correlation coefficient
+
+Often noted $\rho$. Same as Pearson's, but on the ranks! Let:
+
+ * $r_x$ be the ranks of $x$,
+ * $r_y$ be the ranks of $y$.
+ 
+\[
+  \rho(x, y) = \operatorname{cor}(r_x, r_y)
+\]
+
+
+Key properties: 
+
+  * not sensitive to extreme values, 
+  * invariant by monotonous (increasing) transformation (e.g. log, square-root),
+  * not adapted when there are ex-aequos
+
+
+## "Exercises" {.columns-2}
+
+With the argument `method` set to `"spearman`: 
+
+```{r spearcorr}
+cor(fruits$Potassium, 
+    fruits$Phosphore, 
+    method = "spearman")
+```
+
+<p class="forceBreak"></p>
+
+Same, but with the `rank` function:
+
+```{r spearcorrrank}
+cor(rank(fruits$Potassium),
+    rank(fruits$Phosphore))
+```
+
+## Kendall's correlation coefficient
+
+Pairs of points: select two samples $i$ and $j$.
+
+ * Concordant Pair : $\left(x_{i}<x_{j} \text { et } y_{i}<y_{j}\right)$ OU $\left(x_{i}>x_{j} \text { et } y_{i}>y_{j}\right)$
+ * Discordant Pair : $\left(x_{i}<x_{j} \text { et } y_{i}>y_{j}\right)$ OU $\left(x_{i}>x_{j} \text { et } y_{i}<y_{j}\right)$
+ 
+\[
+  \tau(x, y) = \displaystyle \frac{n_C - n_D}{n_0},
+\]
+where $n_C$ is the number of concordant pairs, $n_D$ the number of discordant pairs and $n_0$ total number of pairs.
+
+## Comparison {.columns-2}
+
+Pearson: nice linear relationship.
+
+```{r cor1}
+cor(fruits$Potassium, 
+    fruits$Phosphore, 
+    method = "pearson")
+```
+
+Spearman: relationship is non-linear but monotonous.
+
+```{r cor2}
+cor(fruits$Potassium, 
+    fruits$Phosphore, 
+    method = "spearman")
+```
+
+<p class="forceBreak"></p>
+
+Kendall: ex-aequos.
+
+```{r cor3}
+cor(fruits$Potassium, 
+    fruits$Phosphore, 
+    method = "kendall")
+```
+
+
+## Beware of naked numbers!
+
+![Datasaurus](img/S05pca/DataDino-600x455.gif)
+
+## Plot the correlation {.columns-2}
+
+To compute all correlations:
+
+```{r computeAllCorr}
+cormat <- cor(fruits[, -(1:2)])
+```
+
+To make a "correlogram":
+
+```{r correlogramCode, eval = FALSE}
+corrplot(cormat)
+```
+
+
+<p class="forceBreak"></p>
+
+```{r correlogramPlot, echo = FALSE, out.width="100%"}
+corrplot(cormat)
+```
+
+
+## Exercise
+
+Make a correlogram on the fruit data and change the color of the labels.
+
+
+# PCA on a two-dimensional data-set
+
+## Recall the first graph {.columns-2}
+
+The real data:
+
+```{r phopolog_recall, echo = FALSE, fig.width=3, fig.height=3, out.height="100%", out.width="100%"}
+ggplot(fruits, aes(Phosphore, Potassium)) + 
+  geom_point() + theme_bw() + scale_y_log10() + scale_x_log10()
+```
+
+<p class="forceBreak"></p>
+
+To make my life easier
+
+```{r easier_data, echo = FALSE, fig.width=3, fig.height=3, out.width="100%"}
+xy <- data.frame(
+  scale(
+    cbind(
+      x = log10(fruits$Phosphore),
+      y = log10(fruits$Potassium))))
+
+ggplot(xy, aes(x)) + 
+  geom_point(aes(y = y)) + 
+  theme_bw() + coord_equal()
+```
+
+## Exercise / discussion: What did I do? {.columns-2}
+
+
+```{r phopolog_recall_what, echo = FALSE, fig.width=3, fig.height=3, out.height="100%", out.width="100%"}
+ggplot(fruits, aes(Phosphore, Potassium)) + 
+  geom_point() + theme_bw() + scale_y_log10() + scale_x_log10()
+```
+
+<p class="forceBreak"></p>
+
+```{r easier_data_what, echo = FALSE, fig.width=3, fig.height=3, out.width="100%"}
+xy <- data.frame(
+  scale(
+    cbind(
+      x = log10(fruits$Phosphore),
+      y = log10(fruits$Potassium))))
+
+ggplot(xy, aes(x)) + 
+  geom_point(aes(y = y)) + 
+  theme_bw() + coord_equal()
+```
+
+
+## Linear Regression, aka Linear Model {.columns-2}
+
+ * Model: $y = a x + b$
+ * $a = \frac{\operatorname{cov}(x, y)}{\operatorname{var}(x)}$ is the slope of the line, 
+ * $b = \bar y - a \bar x$ is the intercept.
+
+<p class="forceBreak"></p>
+
+```{r lmfruitplot, echo = FALSE, fig.width=3, fig.height=3, out.height="100%", out.width="100%"}
+res.lm <- lm(y ~ x, data = xy)
+ab <- coef(res.lm)
+
+xy <- data.frame(
+  xy, 
+  yhat = predict(res.lm))
+
+ggplot(xy, aes(x)) + 
+  geom_point(aes(y = y)) + 
+  geom_abline(intercept = ab[1], slope = ab[2], color = 3) + 
+  geom_point(aes(y = yhat), color = 3, shape = 4) + 
+  geom_segment(aes(y = y, xend = x, yend = yhat), color = 3) + 
+  theme_bw() + coord_equal()
+```
+
+## First principal component {.columns-2}
+
+ * $\text{PC}_1 = a_1 x + a_2y$
+ * $a_1$ and $a_2$ are the loadings
+ * $\text{PC}_1$ is the first principal component
+ * $a_1$ and $a_2$ are computed such that $\text{PC}_1$ has maximum variance **AND** $a_1^2 + a_2^2 = 1$
+
+<p class="forceBreak"></p>
+
+```{r pcafruitplot, echo = FALSE, fig.width=3, fig.height=3, out.height="100%", out.width="100%"}
+
+res.pc <- prcomp(xy[, 1:2], scale. = FALSE)
+pcslope <- res.pc$rotation[2, 1] / res.pc$rotation[1, 1]
+pcintercept <- 0
+ROT1 <- res.pc$rotation[, 1] %*% t(res.pc$rotation[, 1])
+pchatx <- (as.matrix(xy[, 1:2]) %*% ROT1)[, 1]
+pchaty <- (as.matrix(xy[, 1:2]) %*% ROT1)[, 2]
+
+xy <- data.frame(
+  xy, 
+  pchatx = pchatx,
+  pchaty = pchaty)
+
+dat.ell <- data.frame(ellipse::ellipse(cov(xy[, 1:2])))  
+
+ggplot(xy) + 
+  geom_point(aes(x = x, y = y)) + 
+  geom_abline(intercept = pcintercept, slope = pcslope, color = 2) + 
+  geom_point(aes(x = pchatx, y = pchaty), color = 2, shape = 3) + 
+  geom_segment(aes(x = x, y = y, xend = pchatx, yend = pchaty), color = 2) +
+  geom_path(mapping = aes(x, y), data = dat.ell, color = 2, alpha = 0.5) +
+  theme_bw() + coord_equal()
+```
+
+## Both on the same plot
+
+```{r both, echo = FALSE}
+ggplot(xy) + 
+  geom_point(aes(x = x, y = y)) + 
+  geom_abline(intercept = pcintercept, slope = pcslope, color = 2) + 
+  geom_abline(intercept = ab[1], slope = ab[2], color = 3) + 
+  theme_bw() + coord_equal()
+```
+
+
+# PCA with FactoMineR
+
+## The PCA function
+
+```{r pca_first_look}
+respca <- PCA(
+  X = fruits,        ## Data
+  scale.unit = TRUE, ## Standardize
+  ncp = 5,           ## Nb of dimensions
+  quali.sup = 1:2,   ## Add. qual. variables
+  graph = FALSE      ## No graphs
+)
+```
+

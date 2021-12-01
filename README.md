@@ -7,6 +7,8 @@
 | Nov. 22 | Packages  | [[HTML](vignettes/S02packages.html) [PDF](vignettes/S02packages.pdf)] | [[Lien](https://learnr.pasteur.fr/remuse/T02packages/)] |
 | Nov. 25 | ggplot2   | [[HTML](vignettes/S03ggplot2.html) [PDF](vignettes/S03ggplot2.pdf)] | [[Lien](https://learnr.pasteur.fr/remuse/T03ggplot2/)] |
 | Nov. 25 | pheatmap  | [[HTML](vignettes/S04pheatmap.html) [PDF](vignettes/S04pheatmap.pdf)] | [[Lien](https://learnr.pasteur.fr/remuse/T04pheatmap)] |
+| Dec. 2 | PCA  | [[HTML](vignettes/S05pca.html) [PDF](vignettes/S05pca.pdf)] | [[Lien](https://learnr.pasteur.fr/remuse/T05pca)] |
+| Dec. 2 | Clustering  | [[HTML](vignettes/S06clustering.html) [PDF](vignettes/S06clustering.pdf)] | [[Lien](https://learnr.pasteur.fr/remuse/T06clustering)] |
 
 ****
 
